@@ -1,9 +1,11 @@
-README.template
+# Operating Systems Assignment 3 GROUP 14
 
-## Project Number/Title 
+## Authors
 
-* Authors: Your Name, and your group members’ names
-* Group name: Your Group Name
+This project was developed by students of Group 14:
+- Christina Nguyen a1797406
+- Hong Minh Nguyen a1894168
+- Samira Hazara a1852922
 
 ## Overview
 
