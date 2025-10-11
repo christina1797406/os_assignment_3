@@ -1,4 +1,4 @@
-# Operating Systems Assignment 3 GROUP 14
+# Operating Systems Assignment 3 - GROUP 14
 
 ## Authors
 
