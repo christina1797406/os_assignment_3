@@ -8,14 +8,6 @@
 #include <stdlib.h> /* for malloc */
 #include <string.h> /* for memcpy */
 
-/* this function will be called by mergesort() and also by
- * parallel_mergesort(). Christina */
-void merge(int leftstart, int leftend, int rightstart, int rightend) {}
-
-/* this function will be called by parallel_mergesort() as its base case. Minh
- */
-void my_mergesort(int left, int right) {}
-
 /* this function will be called by mergesort() and also by parallel_mergesort().
  * Christina */
 void merge(int leftstart, int leftend, int rightstart, int rightend) {
