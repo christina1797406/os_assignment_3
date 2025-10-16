@@ -9,15 +9,15 @@ This project was developed by students of Group 14:
 
 ## Overview
 
-Concisely explain what the program does. If this exceeds a couple of
-sentences, you're going too far. Generally, you should be pulling this
-right from the project specification. We don't want you to just cut and
-paste, but paraphrase what is stated in the project specification.
+This program implements a parallel merge sort using the *pthread* library to sort an integer array. Given a randomly generated integer array, it divides the sorting task across multiple threads according to a user-specified cutodd level. The user can specify a *cutoff* to control the number of recursive splitting levels to spawn new threads. When the cutoff is reached, further recursion is handles serially. The program is designed to showcase how multithreading and inter-thread synchronization can accelerate the same divide-and-conquer merge sort algorithm, and it reports timing results to quantify speedups over the serial version.
 
 ## Manifest
 
-A listing of source files and other non-generated files, and a brief
-(one-line) explanation of the purpose of each file.
+- mergesort.c: Contains the implementations of merge(), my_mergesort(), parallel_mergesort(), and buildArgs()
+- mergesort.h: Header file that declares global variables, data structures, and function prototypes used by merge modules
+- test-mergesort.c: Test harness that sets up random arrays, invokes parallel_mergesort(), measures timing and verifies correctness
+- Makefile: Build rules (compilation, linking with pthread, ect.)
+- README: Documentation of the project, usage, design, and setup instructions
 
 ## Building the project
 
