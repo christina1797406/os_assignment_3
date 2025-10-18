@@ -74,12 +74,12 @@ void *parallel_mergesort(void *arg) {
 
   rc = pthread_create(&t1, NULL, parallel_mergesort, leftArg);
   if (rc) {
-    printf(stderr, "pthread_create failed: %d\n", rc);
+    fprintf(stderr, "pthread_create failed: %d\n", rc);
     exit(EXIT_FAILURE);
   }
   rc = pthread_create(&t2, NULL, parallel_mergesort, rightArg);
   if (rc) {
-    printf(stderr, "pthread_create failed: %d\n", rc);
+    fprintf(stderr, "pthread_create failed: %d\n", rc);
     exit(EXIT_FAILURE);
   }
 
