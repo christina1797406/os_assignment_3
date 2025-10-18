@@ -9,15 +9,15 @@ This project was developed by students of Group 14:
 
 ## Overview
 
-This program implements a parallel merge sort using the *pthread* library to sort an integer array. Given a randomly generated integer array, it divides the sorting task across multiple threads according to a user-specified cutodd level. The user can specify a *cutoff* to control the number of recursive splitting levels to spawn new threads. When the cutoff is reached, further recursion is handles serially. The program is designed to showcase how multithreading and inter-thread synchronization can accelerate the same divide-and-conquer merge sort algorithm, and it reports timing results to quantify speedups over the serial version.
+This program implements a parallel merge sort using the *pthread* library to sort an integer array. Given a randomly generated integer array, it divides the sorting task across multiple threads according to a user-specified cutoff level. The user can specify a *cutoff* to control the number of recursive splitting levels to spawn new threads. When the cutoff is reached, further recursion is handles serially. The program is designed to showcase how multithreading and inter-thread synchronization can accelerate the same divide-and-conquer merge sort algorithm, and it reports timing results to quantify speedups over the serial version.
 
 ## Manifest
 
-- mergesort.c: Contains the implementations of merge(), my_mergesort(), parallel_mergesort(), and buildArgs()
-- mergesort.h: Header file that declares global variables, data structures, and function prototypes used by merge modules
-- test-mergesort.c: Test harness that sets up random arrays, invokes parallel_mergesort(), measures timing and verifies correctness
-- Makefile: Build rules (compilation, linking with pthread, ect.)
-- README: Documentation of the project, usage, design, and setup instructions
+- `mergesort.c`: Contains the implementations of merge(), my_mergesort(), parallel_mergesort(), and buildArgs() functions
+- `mergesort.h`: Header file that declares global variables, data structures, and function prototypes used by merge modules
+- `test-mergesort.c`: Test harness that sets up random arrays, invokes parallel_mergesort(), measures timing and verifies correctness
+- `Makefile`: Build rules (compilation, linking with pthread, ect.)
+- `README.md`: Documentation of the project, usage, design, and setup instructions
 
 ## Building the project
 
@@ -28,8 +28,39 @@ possible?
 
 ## Features and usage
 
-Summarise the main features of your program. It is also appropriate to
-instruct the user how to use your program.
+Key features include:
+- Parallelisation with threads: The array is divided recursively across multiple threads to imitate multi-core processors
+- Optimised merging: The program merges elements in subarrays using a temp array `B` and `memcpy`.
+- Recursive mergesort: The program uses standard recursive mergesort to organise the arrays
+- Command-line usage: Users can specify input size, cutoff level and random seed from command line
+
+### Usage instructions
+1. To compile the program:
+```bash
+make
+```
+This will create an executable called `test-mergesort`.
+
+2. To clean up compiled files and exectable, run:
+```bash
+make clean
+```
+
+3. To run the program with arguments:
+```bash
+./test-mergesort <input_size> <cutoff> <seed>
+```
+where:
+- `input_size` is the number of elements to be sorted
+- `cutoff` is the depth of threads generated
+- `seed` is the random seed to generate input array
+
+
+For example: 
+```bash
+./test-mergesort 10000 2 42
+```
+will run the parallel mergesort on 10000 elements, creating threads up to level 2, with a random seed of 42.
 
 ## Testing
 
