@@ -30,7 +30,7 @@ possible?
 
 Key features include:
 - Parallelisation with threads: The array is divided recursively across multiple threads to imitate multi-core processors
-- Optimised merging: The program merges elements in subarrays using a temp array `B` and `memcpy`.
+- Optimised merging: The program merges elements in subarrays using a temp array `B` and `memcpy`
 - Recursive mergesort: The program uses standard recursive mergesort to organise the arrays
 - Command-line usage: Users can specify input size, cutoff level and random seed from command line
 
