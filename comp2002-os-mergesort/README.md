@@ -21,7 +21,7 @@ This program implements a parallel merge sort using the *pthread* library to sor
 
 ## Building the project
 
-This section should tell the user how to build your code.  If you are
+(Christina) This section should tell the user how to build your code.  If you are
 delivering a library, where does it need to be installed, or how do you use
 it? Is this an executable, if so, how can a user get up to speed as fast as
 possible?
@@ -64,17 +64,27 @@ will run the parallel mergesort on 10000 elements, creating threads up to level 
 
 ## Testing
 
-This section should detail how you tested your code. Simply stating "I ran
-it a few times and it seems to work" is not sufficient. Your testing needs
-to be detailed here.
+(Minh) Your testing needs to be detailed here.
+
+To test our code, we reviewed the provided test-mergesort.c file. (explain more on how this helped with testing - examining functions available)
+- Edge case testing (provide example?? what values are restricted for each argument??) 
+- Unit testing (function tested individually)
+- Integration testing ()
+- Regression testing (verify if order is correct)
+- Performance testing??
+
+We also considered adding a separate testing c file in addition to the provided test-mergesort.c file, named `test-mergesort-2.c`.
+In this file, we created (number) more functions to help test ..
+1. function-1
+2. function-2
 
 ## Known Bugs
 
-List known bugs that you weren't able to fix (or ran out of time to fix).
+(Christina) List known bugs that you weren't able to fix (or ran out of time to fix).
 
 ## Reflection and Self Assessment
 
-Discuss the issues you encountered during development and testing. What
+(Samira) Discuss the issues you encountered during development and testing. What
 problems did you have? What did you have to research and learn on your own?
 What kinds of errors did you get? How did you fix them?
 
@@ -84,7 +94,7 @@ did the development and testing process go for you?
 
 ## Sources Used
 
-If you used any sources outside of the textbook, you should list them here. 
+(Samira) If you used any sources outside of the textbook, you should list them here. 
 If you looked something up on stackoverflow.com or you use help from AI, and 
 fail to cite it in this section, it will be considered plagiarism and dealt 
 with accordingly. So be safe CITE!
