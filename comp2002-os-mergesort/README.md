@@ -92,8 +92,4 @@ Optimising the merge function for parallel execution was another challenge that 
 Our team gained valuable insights into the challenges and considerations in parallel programming. Through the enforcement of the importance of reliable design, in-depth testing, and coninuous learning, this task equipped us with beneficial skills and knowledge to be used in future endeavors that involve multithreading and parallel computing.
 
 ## Sources Used
-
-(Samira) If you used any sources outside of the textbook, you should list them here. 
-If you looked something up on stackoverflow.com or you use help from AI, and 
-fail to cite it in this section, it will be considered plagiarism and dealt 
-with accordingly. So be safe CITE!
+We relied exclusively on the textbook assigned for the course, specifically *Chapter 26:  Concurrency: An Introduction* and *Chapter 27: Interlude: Thread API*. All concepts, code structure, and methodologies were derived from these chapters. 
