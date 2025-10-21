@@ -83,14 +83,13 @@ In this file, we created (number) more functions to help test ..
 (Christina) List known bugs that you weren't able to fix (or ran out of time to fix).
 
 ## Reflection and Self Assessment
+Through this project, our team significantly improved their understanding of multithreading and applications thereof in sorting algorithms. We gained practical experience in using pthread library, which deepened our understanding of thread creation, synchronization, and resource management. We also gained knowledge about the intricacies of parallel algorithm design, particularly regarding balancing between parallel and serial execution to achieve optimal performance. 
 
-(Samira) Discuss the issues you encountered during development and testing. What
-problems did you have? What did you have to research and learn on your own?
-What kinds of errors did you get? How did you fix them?
+Throughout the development of the prallel merge sort program, our group encountered several challenges that evaluated our understanding and problem-solving skills. One major challenge was implementing the pthread-based parallelism. Initially, managing multiple threads and ensuring proper synchronization proved to be a complex task. We faced issues regarding race conditions and improper thread joins, which caused inconsistent sorting results. We accessed pthread documentation to gain insights into correct thread management techniques. 
 
-What parts of the project did you find challenging? Is there anything that
-finally "clicked" for you in the process of working on this project? How well
-did the development and testing process go for you?
+Optimising the merge function for parallel execution was another challenge that we faced since the standard merge operation was designed for serial execution, and adapting it to work efficiently in a multithreaded environment necessitated memory access patterns and data copying methods to be carefully analysed. We used varying approaches to minimise overhead and ensure thread safety. These approaches are exemplified by ....
+
+Our team gained valuable insights into the challenges and considerations in parallel programming. Through the enforcement of the importance of reliable design, in-depth testing, and coninuous learning, this task equipped us with beneficial skills and knowledge to be used in future endeavors that involve multithreading and parallel computing.
 
 ## Sources Used
 
