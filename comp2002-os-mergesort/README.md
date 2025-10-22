@@ -50,7 +50,7 @@ For macOS users, please note that some changes are required for the implementati
 ```
 
 2. In file `Makefile`: Split CFLAGS and LDFLAGS for compilation and linking respectively.
-Add:
+<br/> Add:
 ```bash
 LDFLAGS = -lpthread
 ```
