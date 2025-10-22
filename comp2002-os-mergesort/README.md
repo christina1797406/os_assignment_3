@@ -9,7 +9,7 @@ This project was developed by students of Group 14:
 
 ## Overview
 
-This program implements a parallel merge sort using the *pthread* library to sort an integer array. Given a randomly generated integer array, it divides the sorting task across multiple threads according to a user-specified cutoff level. The user can specify a *cutoff* to control the number of recursive splitting levels to spawn new threads. When the cutoff is reached, further recursion is handles serially. The program is designed to showcase how multithreading and inter-thread synchronization can accelerate the same divide-and-conquer merge sort algorithm, and it reports timing results to quantify speedups over the serial version.
+This program implements a parallel merge sort using the *pthread* library to sort an integer array. Given a randomly generated integer array, it divides the sorting task across multiple threads according to a user-specified cutoff level. The user can specify a *cutoff* to control the number of recursive splitting levels to spawn new threads. When the cutoff is reached, further recursion is handles serially. The program is designed to showcase how multithreading and inter-thread synchronisation can accelerate the same divide-and-conquer merge sort algorithm, and it reports timing results to quantify speedups over the serial version.
 
 ## Manifest
 
@@ -21,14 +21,44 @@ This program implements a parallel merge sort using the *pthread* library to sor
 
 ## Building the project
 
-(Christina) This section should tell the user how to build your code.  If you are
-delivering a library, where does it need to be installed, or how do you use
-it? Is this an executable, if so, how can a user get up to speed as fast as
-possible?
+### Prerequisites
+The program requires a C compiler that supports -std=gnu89. 
+
+### Building instructions
+1. To build the project, simply clone the repository to your local device via `https://github.com/christina1797406/os_assignment_3.git.`
+2. Change directory to `comp2002-os-mergesort`:
+```bash
+cd comp2002-os-mergesort
+```
+3. Compile and run the program as specified in [Usage instructions](#usage-instructions) below.
+
+### Please note: Compilation discrepancy
+The sorting logic works correctly on both Linux and macOS environments. However, a compilation discrepancy between Linux and macOS environments was observed when testing, related to the `-lpthread` flag in the `Makefile`. 
+
+When compiling on macOS with Clang, the following warning 
+`clang: warning: -lpthread: 'linker' input unused [-Wunused-command-line-argument]` was observed. This happens because `-lpthread` is a linker flag, not a compiler flag. This triggers a warning, but does not affect the program's core functionality and performance. 
+
+To avoid the warning on macOS, users may consider modifying the `Makefile` to only apply the linker flag when necessary. See [macOS warning and changes](#macos-warning-and-changes) for details.
+
+
+### macOS warning and changes 
+For macOS users, please note that a few changes are required for the implementation to run smoothly.
+In files:
+1. `test-mergesort.c`: Comment out or remove line 7 `#include <error.h>     /* On MacOS you won't need this line */`. This 
+2. `Makefile`: Split CFLAGS and LDFLAGS for compilation and linking respectively.
+    ```bash
+    LDFLAGS = -lpthread
+    ```
+
+    Edit `test-mergesort` executable to reflect changes.
+    ```bash
+    test-mergesort: test-mergesort.o mergesort.o
+    $(CC) -o $@ $^ $(LDFLAGS)
+    ```
 
 ## Features and usage
 
-Key features include:
+### Key features include:
 - Parallelisation with threads: The array is divided recursively across multiple threads to imitate multi-core processors
 - Optimised merging: The program merges elements in subarrays using a temp array `B` and `memcpy`
 - Recursive mergesort: The program uses standard recursive mergesort to organise the arrays
@@ -80,16 +110,18 @@ In this file, we created (number) more functions to help test ..
 
 ## Known Bugs
 
-(Christina) List known bugs that you weren't able to fix (or ran out of time to fix).
+There are currently no functional bugs in the code implementation. However, please note that macOS users may see a warning during compilation. See [Building the Project](#building-the-project) for details.
 
 ## Reflection and Self Assessment
-Through this project, our team significantly improved their understanding of multithreading and applications thereof in sorting algorithms. We gained practical experience in using pthread library, which deepened our understanding of thread creation, synchronization, and resource management. We also gained knowledge about the intricacies of parallel algorithm design, particularly regarding balancing between parallel and serial execution to achieve optimal performance. 
 
-Throughout the development of the prallel merge sort program, our group encountered several challenges that evaluated our understanding and problem-solving skills. One major challenge was implementing the pthread-based parallelism. Initially, managing multiple threads and ensuring proper synchronization proved to be a complex task. We faced issues regarding race conditions and improper thread joins, which caused inconsistent sorting results. We accessed pthread documentation to gain insights into correct thread management techniques. 
+Through this project, our team significantly improved their understanding of multithreading and applications thereof in sorting algorithms. We gained practical experience in using pthread library, which deepened our understanding of thread creation, synchronisation, and resource management. We also gained knowledge about the intricacies of parallel algorithm design, particularly regarding balancing between parallel and serial execution to achieve optimal performance. 
+
+Throughout the development of the prallel merge sort program, our group encountered several challenges that evaluated our understanding and problem-solving skills. One major challenge was implementing the pthread-based parallelism. Initially, managing multiple threads and ensuring proper synchronisation proved to be a complex task. We faced issues regarding race conditions and improper thread joins, which caused inconsistent sorting results. We accessed pthread documentation to gain insights into correct thread management techniques. 
 
 Optimising the merge function for parallel execution was another challenge that we faced since the standard merge operation was designed for serial execution, and adapting it to work efficiently in a multithreaded environment necessitated memory access patterns and data copying methods to be carefully analysed. We used varying approaches to minimise overhead and ensure thread safety. These approaches are exemplified by ....
 
 Our team gained valuable insights into the challenges and considerations in parallel programming. Through the enforcement of the importance of reliable design, in-depth testing, and coninuous learning, this task equipped us with beneficial skills and knowledge to be used in future endeavors that involve multithreading and parallel computing.
 
 ## Sources Used
+
 We relied exclusively on the textbook assigned for the course, specifically *Chapter 26:  Concurrency: An Introduction* and *Chapter 27: Interlude: Thread API*. All concepts, code structure, and methodologies were derived from these chapters. 
