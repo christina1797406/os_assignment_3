@@ -21,12 +21,12 @@ This program implements a parallel merge sort using the *pthread* library to sor
 
 ## Building the project
 
-### Prerequisites
-The program requires a C compiler that supports -std=gnu89. 
-
 ### Building instructions
-1. To build the project, simply clone the repository to your local device via `https://github.com/christina1797406/os_assignment_3.git.`
-2. Change directory to `comp2002-os-mergesort`:
+1. To build the project, simply clone the repository to your local device.
+```bash
+git clone https://github.com/christina1797406/os_assignment_3.git
+```
+2. Change to directory named `comp2002-os-mergesort`.
 ```bash
 cd comp2002-os-mergesort
 ```
@@ -42,10 +42,14 @@ To avoid the warning on macOS, users may consider modifying the `Makefile` to on
 
 
 ### macOS warning and changes 
-For macOS users, please note that a few changes are required for the implementation to run smoothly.
-In files:
-1. `test-mergesort.c`: Comment out or remove line 7 `#include <error.h>     /* On MacOS you won't need this line */`. This 
-2. `Makefile`: Split CFLAGS and LDFLAGS for compilation and linking respectively.
+For macOS users, please note that some changes are required for the implementation to run smoothly.
+
+1. In file `test-mergesort.c`, comment out or remove line 7.
+```bash
+// #include <error.h>     /* On MacOS you won't need this line */
+```
+
+2. In file `Makefile`, split CFLAGS and LDFLAGS for compilation and linking respectively.
     ```bash
     LDFLAGS = -lpthread
     ```
