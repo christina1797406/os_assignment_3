@@ -51,15 +51,15 @@ For macOS users, please note that some changes are required for the implementati
 
 2. In file `Makefile`: Split CFLAGS and LDFLAGS for compilation and linking respectively.
 Add:
-    ```bash
-    LDFLAGS = -lpthread
-    ```
+```bash
+LDFLAGS = -lpthread
+```
 
 Edit `test-mergesort` executable to reflect changes.
-    ```bash
-    test-mergesort: test-mergesort.o mergesort.o
-    $(CC) -o $@ $^ $(LDFLAGS)
-    ```
+```bash
+test-mergesort: test-mergesort.o mergesort.o
+$(CC) -o $@ $^ $(LDFLAGS)
+```
 
 ## Features and usage
 
