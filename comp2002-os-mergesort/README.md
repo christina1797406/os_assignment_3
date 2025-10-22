@@ -31,7 +31,8 @@ git clone https://github.com/christina1797406/os_assignment_3.git
 cd comp2002-os-mergesort
 ```
 3. Compile and run the program as specified in [Usage instructions](#usage-instructions) below.  
-
+  
+  
 ### Please note: Compilation discrepancy
 The sorting logic works correctly on both Linux and macOS environments. However, a compilation discrepancy between Linux and macOS environments was observed when testing, related to the `-lpthread` flag in the `Makefile`. 
 
@@ -93,8 +94,8 @@ where:
 - `input_size` is the number of elements to be sorted
 - `cutoff` is the depth of threads generated
 - `seed` is the random seed to generate input array  
+  
 
-<br/>
 #### For example: 
 ```bash
 ./test-mergesort 10000 2 42
