@@ -30,15 +30,16 @@ git clone https://github.com/christina1797406/os_assignment_3.git
 ```bash
 cd comp2002-os-mergesort
 ```
-3. Compile and run the program as specified in [Usage instructions](#usage-instructions) below.
+3. Compile and run the program as specified in [Usage instructions](#usage-instructions) below.  
 
 ### Please note: Compilation discrepancy
 The sorting logic works correctly on both Linux and macOS environments. However, a compilation discrepancy between Linux and macOS environments was observed when testing, related to the `-lpthread` flag in the `Makefile`. 
 
-When compiling on macOS with Clang, the following warning 
-`clang: warning: -lpthread: 'linker' input unused [-Wunused-command-line-argument]` was observed. This happens because `-lpthread` is a linker flag, not a compiler flag. This triggers a warning, but does not affect the program's core functionality and performance. 
+When compiling on macOS with Clang, the following warning was observed
+```clang: warning: -lpthread: 'linker' input unused [-Wunused-command-line-argument]```
+This happens because `-lpthread` is a linker flag, not a compiler flag. This triggers a warning, but does not affect the program's core functionality and performance. 
 
-To avoid the warning on macOS, users may consider modifying the `Makefile` to only apply the linker flag when necessary. See [macOS warning and changes](#macos-warning-and-changes) for details.
+To avoid the warning on macOS, users may consider modifying the `Makefile` to only apply the linker flag when necessary. See [macOS warning and changes](#macos-warning-and-changes) for details.  
 
 
 ### macOS warning and changes 
@@ -51,16 +52,16 @@ For macOS users, please note that some changes are required for the implementati
 
 2. In file `Makefile`: Split CFLAGS and LDFLAGS for compilation and linking respectively.
 
-Add:
-```bash
-LDFLAGS = -lpthread
-```
+    Add:
+    ```bash
+    LDFLAGS = -lpthread
+    ```
 
-Edit `test-mergesort` executable to reflect changes.
-```bash
-test-mergesort: test-mergesort.o mergesort.o
-$(CC) -o $@ $^ $(LDFLAGS)
-```
+    Edit `test-mergesort` executable to reflect changes.
+    ```bash
+    test-mergesort: test-mergesort.o mergesort.o
+    $(CC) -o $@ $^ $(LDFLAGS)
+    ```
 
 ## Features and usage
 
@@ -89,10 +90,10 @@ make clean
 where:
 - `input_size` is the number of elements to be sorted
 - `cutoff` is the depth of threads generated
-- `seed` is the random seed to generate input array
+- `seed` is the random seed to generate input array  
 
 
-For example: 
+#### For example: 
 ```bash
 ./test-mergesort 10000 2 42
 ```
