@@ -88,7 +88,7 @@ make clean
 
 3. To run the program with arguments:
 ```bash
-./test-mergesort <input_size> <cutoff> <seed>
+./test-mergesort <input_size> <cutoff_level> <seed>
 ```
 where:
 - `input_size` is the number of elements to be sorted
@@ -97,10 +97,14 @@ where:
   
 
 #### For example: 
+The following line of code will run the parallel mergesort on 1000000 elements, creating threads up to level 2, with a random seed of 42.
 ```bash
-./test-mergesort 10000 2 42
+./test-mergesort 1000000 2 42
 ```
-will run the parallel mergesort on 10000 elements, creating threads up to level 2, with a random seed of 42.
+The expected output should read:
+```bash
+Sorting 1000000 elements took 0.05 seconds.
+```
 
 ## Testing
 
