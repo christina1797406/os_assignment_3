@@ -44,17 +44,18 @@ To avoid the warning on macOS, users may consider modifying the `Makefile` to on
 ### macOS warning and changes 
 For macOS users, please note that some changes are required for the implementation to run smoothly.
 
-1. In file `test-mergesort.c`, comment out or remove line 7.
+1. In file `test-mergesort.c`: Comment out or remove line 7.
 ```bash
 // #include <error.h>     /* On MacOS you won't need this line */
 ```
 
-2. In file `Makefile`, split CFLAGS and LDFLAGS for compilation and linking respectively.
+2. In file `Makefile`: Split CFLAGS and LDFLAGS for compilation and linking respectively.
+Add:
     ```bash
     LDFLAGS = -lpthread
     ```
 
-    Edit `test-mergesort` executable to reflect changes.
+Edit `test-mergesort` executable to reflect changes.
     ```bash
     test-mergesort: test-mergesort.o mergesort.o
     $(CC) -o $@ $^ $(LDFLAGS)
