@@ -129,7 +129,7 @@ You can also run individual sections:
 
 All test results are saved in test_results.csv.
 
-1. Correctness testing:
+### 1. Correctness testing:
 We wanted to verify that the merge sort algorithm correctly sorts arrays under various conditions. This section includes: 
 
 - Random arrays with different seeds (42, 1234, 99991)
@@ -146,14 +146,14 @@ Each test validates that the output is fully sorted using check_if_sorted(). All
 ./test.sh ./test-mergesort correctness
 ```
 
-2. Performance Testing: 
+### 2. Performance Testing: 
 We wanted to measure runtime and confirm that parallel execution provides a performance speedup. The configuration for this section includes:
 - Large input (n = 100,000,000)
 - Cutoff levels from 0 to 5
 Each run measured wall-clock time using gettimeofday(). Speedup was calculated as: Speedup = T serial / T parallel 
 The result shows that peak speedup ≈ 4.6×, meeting the assignment’s requirement of at least 2× faster than serial execution. Beyond cutoff 4, performance plateaus due to thread overhead and hardware limits.
 
-3. Stress and Stability Testing: 
+### 3. Stress and Stability Testing: 
 - To ensure reliability under extreme workload and repeated runs. In this section, we test the program for very large input (n = 100,000,000, cutoff = 8), and repeated runs with n = 50,000,000, cutoff = 5, seeds 101–105. All stress tests completed successfully without crashes or memory leaks.
 
 
