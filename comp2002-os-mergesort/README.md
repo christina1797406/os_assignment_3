@@ -151,10 +151,18 @@ We wanted to measure runtime and confirm that parallel execution provides a perf
 - Large input (n = 100,000,000)
 - Cutoff levels from 0 to 5
 Each run measured wall-clock time using gettimeofday(). Speedup was calculated as: Speedup = T serial / T parallel 
-The result shows that peak speedup ≈ 4.6×, meeting the assignment’s requirement of at least 2× faster than serial execution. Beyond cutoff 4, performance plateaus due to thread overhead and hardware limits.
+The result shows that peak speedup ≈ 4.6×, meeting the assignment’s requirement of at least 2× faster than serial execution. Beyond cutoff 4, performance plateaus due to thread overhead and hardware limits. The command to run this test case is:
+
+```bash
+./test.sh ./test-mergesort performance
+```
 
 ### 3. Stress and Stability Testing: 
-- To ensure reliability under extreme workload and repeated runs. In this section, we test the program for very large input (n = 100,000,000, cutoff = 8), and repeated runs with n = 50,000,000, cutoff = 5, seeds 101–105. All stress tests completed successfully without crashes or memory leaks.
+- To ensure reliability under extreme workload and repeated runs. In this section, we test the program for very large input (n = 100,000,000, cutoff = 8), and repeated runs with n = 50,000,000, cutoff = 5, seeds 101–105. All stress tests completed successfully without crashes or memory leaks. The command to run this test case is:
+
+```bash
+./test.sh ./test-mergesort stress
+```
 
 
 ## Known Bugs
