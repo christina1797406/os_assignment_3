@@ -117,10 +117,14 @@ To test our code, we reviewed the provided test-mergesort.c file. (explain more 
 - Regression testing (verify if order is correct)
 - Performance testing??
 
-We also considered adding a separate testing c file in addition to the provided test-mergesort.c file, named `test-mergesort-2.c`.
-In this file, we created (number) more functions to help test ..
-1. function-1
-2. function-2
+Testing was conducted using an automated Bash script (test.sh) that evaluates the correctness, performance, and stability of the parallel merge sort implementation.
+All tests use the provided test-mergesort binary, which generates arrays, runs the algorithm, and verifies results with check_if_sorted().
+
+The script produces a CSV file (test_results.csv) summarizing all tests, including input size, cutoff level, seed, and pass/fail status.
+
+To run the tests, compile the program and run the test suite:
+
+
 
 ## Known Bugs
 

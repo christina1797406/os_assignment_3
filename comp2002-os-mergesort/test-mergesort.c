@@ -4,7 +4,7 @@
 #include <sys/times.h> /* for times system call */
 #include <sys/time.h>  /* for gettimeofday system call */
 #include <unistd.h>
-#include <error.h>     /* On MacOS you won't need this line */
+//#include <error.h>     /* On MacOS you won't need this line */
 #include "mergesort.h"
 
 /* the number of levels of threads, specified by the user */
@@ -127,54 +127,66 @@ void printB(void){
 	printf("\n");
 }
 
+// Add this helper function above main()
+void generate_input_array(int A[], int n, int seed, const char *mode) {
+    if (mode == NULL || strcmp(mode, "random") == 0) {
+        generate_random_array(A, n, seed);
+    } else if (strcmp(mode, "sorted") == 0) {
+        for (int i = 0; i < n; i++) A[i] = i;
+    } else if (strcmp(mode, "reversed") == 0) {
+        for (int i = 0; i < n; i++) A[i] = n - i;
+    } else if (strcmp(mode, "equal") == 0) {
+        for (int i = 0; i < n; i++) A[i] = 1;
+    } else {
+        fprintf(stderr, "Unknown mode '%s'. Valid modes: random, sorted, reversed, equal.\n", mode);
+        exit(1);
+    }
+}
+
 int main(int argc, char **argv) {
 
-	if (argc < 4) { // there must be at least one command-line argument
-			fprintf(stderr, "Usage: %s <input size> <cutoff level> <seed> \n", argv[0]);
-			exit(1);
-	}
+    if (argc < 4) {
+        fprintf(stderr, "Usage: %s <input size> <cutoff level> <seed> [mode]\n", argv[0]);
+        fprintf(stderr, "Modes: random (default), sorted, reversed, equal\n");
+        exit(1);
+    }
 
-	int n = atoi(argv[1]);
-	if(n<=1){
-		printf("the input size must be at least 2!");
-		exit(1);
-	}
-	cutoff = atoi(argv[2]);
-	int seed = atoi(argv[3]);
+    int n = atoi(argv[1]);
+    if (n <= 1) {
+        printf("the input size must be at least 2!\n");
+        exit(1);
+    }
 
-	A = (int *) malloc(sizeof(int) * n);
-	B = (int *) malloc(sizeof(int) * n);
+    cutoff = atoi(argv[2]);
+    int seed = atoi(argv[3]);
+    const char *mode = (argc > 4) ? argv[4] : "random";
 
-	// generate random input
-	generate_random_array(A, n, seed);
+    A = (int *) malloc(sizeof(int) * n);
+    B = (int *) malloc(sizeof(int) * n);
 
-	double start_time;
-	double sorting_time;
+    // Generate array based on mode
+    generate_input_array(A, n, seed, mode);
 
-	// sort the input (and time it)
-	start_time = getMilliSeconds();
-	/* first index is 0, last index is n-1, we consider the main thread as level 0 */
-	struct argument *arg=buildArgs(0, n-1, 0);
-	parallel_mergesort(arg);
-	sorting_time = getMilliSeconds() - start_time;
+    double start_time;
+    double sorting_time;
 
-	// print the array, for debugging purpose.
-	//printA();
-	//printB();
-	// print results if correctly sorted otherwise cry foul and exit
-	if (check_if_sorted(A,n)) {
-		printf("Sorting %d elements took %4.2lf seconds.\n", n,  sorting_time/1000.0);
-	} else {
-		printf("%s: sorting failed!!!!\n", argv[0]);
-		free(arg);
-		free(B);
-		free(A);
-		exit(EXIT_FAILURE);
-	}
-	/* Now we can free the memory for the two arrays, as well as free memory for arg. */
-	free(arg);
-	free(B);
-	free(A);
+    start_time = getMilliSeconds();
+    struct argument *arg = buildArgs(0, n - 1, 0);
+    parallel_mergesort(arg);
+    sorting_time = getMilliSeconds() - start_time;
 
-	exit(EXIT_SUCCESS);
+    if (check_if_sorted(A, n)) {
+        printf("Sorting %d elements (%s) took %4.2lf seconds.\n", n, mode, sorting_time / 1000.0);
+    } else {
+        printf("%s: sorting failed!!!! (mode=%s)\n", argv[0], mode);
+        free(arg);
+        free(B);
+        free(A);
+        exit(EXIT_FAILURE);
+    }
+
+    free(arg);
+    free(B);
+    free(A);
+    exit(EXIT_SUCCESS);
 }
