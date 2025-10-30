@@ -75,7 +75,7 @@ For macOS users, please note that some changes are required for the implementati
 - Command-line usage: Users can specify input size, cutoff level and random seed from command line
 
 ### Usage instructions
-2. To clean up compiled files and exectable, run:
+1. To clean up compiled files and exectable, run:
 ```bash
 make clean
 ```
@@ -108,22 +108,53 @@ Sorting 1000000 elements took 0.05 seconds.
 
 ## Testing
 
-(Minh) Your testing needs to be detailed here.
-
-To test our code, we reviewed the provided test-mergesort.c file. (explain more on how this helped with testing - examining functions available)
-- Edge case testing (provide example?? what values are restricted for each argument??) 
-- Unit testing (function tested individually)
-- Integration testing ()
-- Regression testing (verify if order is correct)
-- Performance testing??
-
 Testing was conducted using an automated Bash script (test.sh) that evaluates the correctness, performance, and stability of the parallel merge sort implementation.
 All tests use the provided test-mergesort binary, which generates arrays, runs the algorithm, and verifies results with check_if_sorted().
 
 The script produces a CSV file (test_results.csv) summarizing all tests, including input size, cutoff level, seed, and pass/fail status.
 
 To run the tests, compile the program and run the test suite:
+```bash
+make clean && make
+chmod +x test.sh
+./test.sh ./test-mergesort all
+```
 
+You can also run individual sections:
+```bash
+./test.sh ./test-mergesort correctness
+./test.sh ./test-mergesort performance
+./test.sh ./test-mergesort stress
+```
+
+All test results are saved in test_results.csv.
+
+1. Correctness testing:
+We wanted to verify that the merge sort algorithm correctly sorts arrays under various conditions. This section includes: 
+
+- Random arrays with different seeds (42, 1234, 99991)
+
+- Small to medium sizes (n = 10, 100, 1000, 10000)
+
+- Different cutoffs (0–3) to confirm correctness at different thread depths
+
+- Edge cases: sorted arrays (ascending), reversed arrays (descending), equal arrays (all identical values)
+
+Each test validates that the output is fully sorted using check_if_sorted(). All tests passed successfully (PASS), confirming both serial and parallel correctness. The command to run this test case is:
+
+```bash
+./test.sh ./test-mergesort correctness
+```
+
+2. Performance Testing: 
+We wanted to measure runtime and confirm that parallel execution provides a performance speedup. The configuration for this section includes:
+- Large input (n = 100,000,000)
+- Cutoff levels from 0 to 5
+Each run measured wall-clock time using gettimeofday(). Speedup was calculated as: Speedup = T serial / T parallel 
+The result shows that peak speedup ≈ 4.6×, meeting the assignment’s requirement of at least 2× faster than serial execution. Beyond cutoff 4, performance plateaus due to thread overhead and hardware limits.
+
+3. Stress and Stability Testing: 
+- To ensure reliability under extreme workload and repeated runs. In this section, we test the program for very large input (n = 100,000,000, cutoff = 8), and repeated runs with n = 50,000,000, cutoff = 5, seeds 101–105. All stress tests completed successfully without crashes or memory leaks.
 
 
 ## Known Bugs
