@@ -75,16 +75,16 @@ For macOS users, please note that some changes are required for the implementati
 - Command-line usage: Users can specify input size, cutoff level and random seed from command line
 
 ### Usage instructions
-1. To compile the program:
-```bash
-make
-```
-This will create an executable called `test-mergesort`.
-
 2. To clean up compiled files and exectable, run:
 ```bash
 make clean
 ```
+
+2. To compile the program:
+```bash
+make
+```
+This will create an executable called `test-mergesort`.
 
 3. To run the program with arguments:
 ```bash
