@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wpointer-arith -Wstrict-prototypes -std=gnu89 -fPIC -MMD -MP -lpthread
+CFLAGS = -Wall -Wpointer-arith -Wstrict-prototypes -std=c11 -fPIC -MMD -MP -lpthread
 
 all: test-mergesort
 
