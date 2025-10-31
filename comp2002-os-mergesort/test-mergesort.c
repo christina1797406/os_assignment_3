@@ -132,11 +132,14 @@ void generate_input_array(int A[], int n, int seed, const char *mode) {
     if (mode == NULL || strcmp(mode, "random") == 0) {
         generate_random_array(A, n, seed);
     } else if (strcmp(mode, "sorted") == 0) {
-        for (int i = 0; i < n; i++) A[i] = i;
+		int i;
+        for (i = 0; i < n; i++) A[i] = i;
     } else if (strcmp(mode, "reversed") == 0) {
-        for (int i = 0; i < n; i++) A[i] = n - i;
+		int i;
+        for (i = 0; i < n; i++) A[i] = n - i;
     } else if (strcmp(mode, "equal") == 0) {
-        for (int i = 0; i < n; i++) A[i] = 1;
+		int i;
+        for (i = 0; i < n; i++) A[i] = 1;
     } else {
         fprintf(stderr, "Unknown mode '%s'. Valid modes: random, sorted, reversed, equal.\n", mode);
         exit(1);
