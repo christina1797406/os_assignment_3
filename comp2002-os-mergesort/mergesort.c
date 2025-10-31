@@ -10,6 +10,7 @@
 
 /* this function will be called by mergesort() and also by parallel_mergesort().
  * Christina */
+//merge two sorted halves back into A
 void merge(int leftstart, int leftend, int rightstart, int rightend) {
   int i, j, k;
   i = leftstart;   // start index for the left subarray
@@ -34,12 +35,12 @@ void merge(int leftstart, int leftend, int rightstart, int rightend) {
     B[k++] = A[j++];
   }
   // Use memcpy to copy the merged elements back to A from B (src, dest, size)
-  memcpy(&A[leftstart], &B[leftstart],
-         (rightend - leftstart + 1) * sizeof(int));
+  memcpy(&A[leftstart], &B[leftstart], (rightend - leftstart + 1) * sizeof(int));
 }
 
 /* this function will be called by parallel_mergesort() as its base case. Minh
  */
+//classic single-threaded recursive merge sort
 void my_mergesort(int left, int right) {
   if (left >= right) return;
 
@@ -50,6 +51,7 @@ void my_mergesort(int left, int right) {
 }
 
 /* this function will be called by the testing program. Samira */
+//recursive, thread-spawning version (stops at cutoff)
 void *parallel_mergesort(void *arg) {
   struct argument *a = (struct argument *)arg;
   int left = a->left;
@@ -98,6 +100,7 @@ void *parallel_mergesort(void *arg) {
 }
 
 /* we build the argument for the parallel_mergesort function. TBD */
+//heap-allocate the (left,right,level) triple for child threads
 struct argument *buildArgs(int left, int right, int level) {
     struct argument *arg = (struct argument *)malloc(sizeof(struct argument));
     if (arg == NULL) {

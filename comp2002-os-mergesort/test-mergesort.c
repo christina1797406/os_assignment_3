@@ -105,29 +105,6 @@ int check_if_sorted(int A[], int n)
 	return TRUE;
 }
 
-/* this function prints A, but we only print the first 100 elements */
-void printA(void){
-	int i;
-	printf("Array A:");
-	/* FIXME: we assume the size of A is at least 100, and this will fail if it is lower than 100 */
-	for(i=0;i<100;i++){
-		printf(" %d",A[i]);
-	}
-	printf("\n");
-}
-
-/* this function prints B, but we only print the first 100 elements */
-void printB(void){
-	int i;
-	printf("Array B:");
-	/* FIXME: we assume the size of B is at least 100, and this will fail if it is lower than 100 */
-	for(i=0;i<100;i++){
-		printf(" %d",B[i]);
-	}
-	printf("\n");
-}
-
-// Add this helper function above main()
 void generate_input_array(int A[], int n, int seed, const char *mode) {
     if (mode == NULL || strcmp(mode, "random") == 0) {
         generate_random_array(A, n, seed);
@@ -179,7 +156,7 @@ int main(int argc, char **argv) {
     sorting_time = getMilliSeconds() - start_time;
 
     if (check_if_sorted(A, n)) {
-        printf("Sorting %d elements (%s) took %4.2lf seconds.\n", n, mode, sorting_time / 1000.0);
+        printf("Sorting %d elements took %4.2lf seconds.\n", n, sorting_time / 1000.0);
     } else {
         printf("%s: sorting failed!!!! (mode=%s)\n", argv[0], mode);
         free(arg);
